@@ -2,28 +2,15 @@
 
 const Controller = require('egg').Controller;
 
-const {
-  Wechaty,
-} = require('wechaty');
-
-const bot = new Wechaty({
-  name: 'myWechatyBot',
-});
+const WebSocket = require('ws');
+const ws = new WebSocket('ws://127.0.0.1:5555');
 class HomeController extends Controller {
   async index() {
     const { ctx } = this;
-    bot.on('login', this.onLogin);
-    bot.start()
-      .catch(async e => {
-        console.error('Bot start() fail:', e);
-        await bot.stop();
-        // process.exit(-1);
-      });
-    ctx.body = 'hi, egg';
-  }
-  onLogin(user) {
-    console.log(`${user.name()} login`);
-    bot.say('Wechaty login').catch(console.error);
+    ws.on('message', msg => {
+      console.log('message from server:' + msg);
+    });
+
   }
 }
 
