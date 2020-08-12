@@ -15,21 +15,65 @@ class AppBootHook {
   async didReady() {
     // 应用已经启动完毕
     const ctx = await this.app.createAnonymousContext();
-    const WebSocket = require('ws');
-    const ws = new WebSocket('ws://127.0.0.1:5555');
-    await ws.on('message', msg => {
-      console.log('message from server:' + msg);
+    const url = this.app.config.wsUrl;
+    const initData = await ctx.curl(`${url}/api/getcontactlist`);
+    console.log(initData.data.toString());
+    const config = this.app.config.messageTypeCode;
+    await this.app.ws.on('message', msg => {
+      const message = JSON.parse(msg);
+      const type = message.type;
+      switch (type) {
+        case config.CHATROOM_MEMBER_NICK:
+          console.log(message);
+          break;
+        case config.PERSONAL_DETAIL:
+          console.log(message);
+          break;
+        case config.AT_MSG:
+          console.log(message);
+          break;
+        case config.DEBUG_SWITCH:
+          console.log(message);
+          break;
+        case config.PERSONAL_INFO:
+          console.log(message);
+          break;
+        case config.TXT_MSG:
+          console.log(message);
+          break;
+        case config.PIC_MSG:
+          console.log(message);
+          break;
+        case config.CHATROOM_MEMBER:
+          console.log(message);
+          break;
+        case config.RECV_PIC_MSG:
+          console.log(message);
+          break;
+        case config.RECV_TXT_MSG:
+          console.log(message);
+          break;
+        case config.HEART_BEAT:
+          console.log(message);
+          break;
+        case config.GET_USER_LIST_SUCCSESS:
+          console.log(message);
+          break;
+        case config.GET_USER_LIST_FAIL:
+          console.log(message);
+          break;
+          // case SEND_TXT_MSG_SUCCSESS:
+          // handle_recv_msg(j);
+          // break;
+          // case SEND_TXT_MSG_FAIL:
+          // handle_recv_msg(j);
+          // break;
+        default:
+          break;
+      }
     });
   }
 
-  async serverDidReady() {
-    // http / https server 已启动，开始接受外部请求
-    // 此时可以从 app.server 拿到 server 的实例
-
-    this.app.server.on('timeout', socket => {
-      // handle socket timeout
-    });
-  }
 }
 
 module.exports = AppBootHook;
