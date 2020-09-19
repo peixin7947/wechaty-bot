@@ -8,5 +8,17 @@ class UserService extends Service {
   async createUserInfo() {
 
   }
+
+  // 获取通讯录列表
+  async getUserList() {
+    const { ctx, app } = this;
+    const getUserListMsg = {
+      id: Date.now().toString(),
+      type: 5000,
+      content: 'user list',
+      wxid: 'null',
+    };
+    await app.ws.send(JSON.stringify(getUserListMsg));
+  }
 }
 module.exports = UserService;

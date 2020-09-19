@@ -1,5 +1,6 @@
 /* eslint valid-jsdoc: "off" */
 
+
 'use strict';
 module.exports = appInfo => {
 
@@ -16,10 +17,10 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
-  config.messageTypeCode = {
-    RECV_TXT_MSG: 1, // 接收到文字消息
-    RECV_PIC_MSG: 3, // 接收到图片消息
-  };
+  // config.messageTypeCode = {
+  //   RECV_TXT_MSG: 1, // 接收到文字消息
+  //   RECV_PIC_MSG: 3, // 接收到图片消息
+  // };
 
   config.wsUrl = 'http://127.0.0.1:5555';
 
