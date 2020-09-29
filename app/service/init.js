@@ -2,7 +2,7 @@
 
 const Service = require('egg').Service;
 
-class UserService extends Service {
+class InitService extends Service {
 
   // 与websocket连接
   async init() {
@@ -13,8 +13,11 @@ class UserService extends Service {
       const type = message.type;
       if (type !== 5005) console.log(message);
       switch (type) {
-        case messageTypeCode.CHATROOM_MEMBER_NICK:
+        case messageTypeCode.CHATROOM_MEMBER_NICK: {
+          // 获取群聊成员昵称
+          console.log(message.content);
           break;
+        }
         case messageTypeCode.PERSONAL_DETAIL:
           break;
         case messageTypeCode.AT_MSG:
@@ -28,6 +31,8 @@ class UserService extends Service {
         case messageTypeCode.PIC_MSG:
           break;
         case messageTypeCode.CHATROOM_MEMBER:
+          // 获取群聊成员列表
+          await ctx.service.chatroom.updateChatroomMemberList(message.content);
           break;
         case messageTypeCode.RECV_PIC_MSG:
           break;
@@ -38,10 +43,10 @@ class UserService extends Service {
           await ctx.service.user.saveUserList(message.content);
           break;
         }
-
         case messageTypeCode.HEART_BEAT:
           break;
         case messageTypeCode.GET_USER_LIST_FAIL:
+          ctx.logger.error('更新用户通讯录失败');
           break;
           // case SEND_TXT_MSG_SUCCSESS:
           // handle_recv_msg(j);
@@ -55,4 +60,4 @@ class UserService extends Service {
     });
   }
 }
-module.exports = UserService;
+module.exports = InitService;

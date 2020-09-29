@@ -13,4 +13,8 @@ module.exports = {
     return ws;
   },
 
+  get msgId() {
+    return Date.now().toString();
+  },
+
 };

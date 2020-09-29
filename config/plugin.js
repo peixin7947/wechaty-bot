@@ -5,4 +5,9 @@ module.exports = {
     enable: true,
     package: 'egg-mongoose',
   },
+
+  routerPlus: {
+    enable: true,
+    package: 'egg-router-plus',
+  },
 };

@@ -3,9 +3,12 @@
 const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
-  async index() {
+  // 测试调用接口
+  async test() {
     const { ctx } = this;
-    await ctx.service.user.getUserList();
+    // await ctx.service.chatroom.getChatroomMemberList();
+    await ctx.service.chatroom.getMemberNickInChatroom();
+    // await ctx.service.chatroom.getChatroomMemberList();
     ctx.body = 'success';
   }
 }

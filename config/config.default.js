@@ -43,7 +43,8 @@ module.exports = appInfo => {
     },
   };
 
-  config.wsUrl = 'http://127.0.0.1:5555';
+  config.wsUrl = 'ws://127.0.0.1:5555';
+  config.httpUrl = 'http://127.0.0.1:5555';
 
   return {
     ...config,

@@ -11,7 +11,6 @@ class AppBootHook {
     // 例如：创建自定义应用的示例
   }
 
-
   async didReady() {
     // 应用已经启动完毕
     const { app } = this;
