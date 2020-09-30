@@ -15,7 +15,7 @@ class InitService extends Service {
       switch (type) {
         case messageTypeCode.CHATROOM_MEMBER_NICK: {
           // 获取群聊成员昵称
-          console.log(message.content);
+          await ctx.service.chatroom.updateChatroomMemberNick(message.content);
           break;
         }
         case messageTypeCode.PERSONAL_DETAIL:
