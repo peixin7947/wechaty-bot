@@ -13,8 +13,13 @@ module.exports = {
     return ws;
   },
 
+  // 发送消息给ws服务器
+  async sendMsgToWS(data) {
+    await ws.send(data);
+  },
+
   get msgId() {
-    return Date.now().toString();
+    return new Date().toString();
   },
 
 };

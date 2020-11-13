@@ -15,8 +15,8 @@ class UserService extends Service {
   async getUserList() {
     const { app } = this;
     const getUserListMsg = {
-      id: Date.now().toString(),
-      type: app.constance.messageTypeCode.USER_LIST,
+      id: app.msgId,
+      type: app.constance.msgTypeCode.USER_LIST,
       content: 'user list',
       wxid: 'null',
     };
