@@ -33,12 +33,18 @@ class InitService extends Service {
           break;
         case msgTypeCode.CHATROOM_MEMBER:
           // 获取群聊成员列表
+          ctx.logger.info('获取群聊列表和群成员列表');
           await ctx.service.chatroom.updateChatroomMemberList(message.content);
           break;
         case msgTypeCode.RECV_PIC_MSG:
           break;
         case msgTypeCode.RECV_TXT_MSG:
-          console.log('收到消息：' + message);
+          // 收到文本消息
+          if (message.receiver === 'self') {
+            console.log('收到私发消息：' + JSON.stringify(message));
+          } else {
+            console.log('收到群消息：' + JSON.stringify(message));
+          }
           break;
         case msgTypeCode.USER_LIST: {
           // 获取用户通讯录列表成功

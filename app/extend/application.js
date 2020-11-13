@@ -15,7 +15,8 @@ module.exports = {
 
   // 发送消息给ws服务器
   async sendMsgToWS(data) {
-    await ws.send(data);
+    const message = JSON.stringify(data);
+    await ws.send(message);
   },
 
   get msgId() {

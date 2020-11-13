@@ -21,8 +21,7 @@ class UserService extends Service {
       wxid: 'null',
     };
     // 发送消息给ws服务端
-    const message = JSON.stringify(getUserListMsg);
-    await app.ws.send(message);
+    await app.sendMsgToWS(getUserListMsg);
   }
 
   /**
