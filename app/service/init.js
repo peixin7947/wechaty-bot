@@ -43,7 +43,7 @@ class InitService extends Service {
           if (message.receiver === 'self') {
             console.log('收到私发消息：' + JSON.stringify(message));
           } else {
-            if (message.content === '功能') {
+            if (message.content === '1') {
               // 获取该群的成员昵称
               await ctx.service.chatroom.getMemberNickInChatroom(message.receiver);
             }

@@ -27,7 +27,7 @@ class ChatroomService extends Service {
    * @return {Promise<void>} 无
    */
   async updateChatroomMemberList(data) {
-    const { ctx, app } = this;
+    const { ctx } = this;
     for (const chatroom of data) {
       await ctx.model.Chatroom.findOneAndUpdate(
         { roomid: chatroom.roomid },
@@ -48,7 +48,7 @@ class ChatroomService extends Service {
    * @return {Promise<void>} 无
    */
   async getMemberNickInChatroom(roomId) {
-    const { ctx, app } = this;
+    const { app } = this;
     const getMemberNickInChatroomMsg = {
       id: app.msgId,
       type: app.constance.msgTypeCode.CHATROOM_MEMBER_NICK,
@@ -66,7 +66,6 @@ class ChatroomService extends Service {
    */
   async updateChatroomMemberNick(data) {
     const { ctx } = this;
-    console.log(data);
     await ctx.model.Chatroom.findOneAndUpdate(
       {
         roomid: data[0].roomid,

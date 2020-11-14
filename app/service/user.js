@@ -3,11 +3,6 @@
 const Service = require('egg').Service;
 
 class UserService extends Service {
-  // 保存用户信息
-  async createUserInfo() {
-
-  }
-
   /**
    * 获取通讯录列表
    * @return {Promise<void>} 无返回
